@@ -1,11 +1,9 @@
 import React from 'react';
-import PageCurrency from "./pages/pageCurrency";
+import PageCurrency from "./pages/pageCurrency/pageCurrency";
 
 function App() {
   return (
-      <div >
-          <PageCurrency></PageCurrency>
-      </div>
+    <PageCurrency ></PageCurrency>
   );
 }
 

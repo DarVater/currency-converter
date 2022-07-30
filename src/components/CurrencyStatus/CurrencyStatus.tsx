@@ -4,8 +4,10 @@ import {FetchCurrencyAPI} from "../../APIs/fetchCurrencyAPI";
 import {useDispatch} from "react-redux";
 import {useActions} from "../../hooks/useActions";
 import {setTrackCurrency} from "../../store/reducers/action-creators/trackCurrency";
+import './CurrencyStatus.css'
 
 const CurrencyStatus = () => {
+    const {needCurrencies} = useTypedSelector(state => state.needCurrencies)
     const {currency, loading, error} = useTypedSelector(state => state.currency)
     const {FetchCurrencyAPI} = useActions()
 
@@ -30,18 +32,21 @@ const CurrencyStatus = () => {
     if (error) {
         return  <h1>{error}</h1>
     }
-    const needCurrencies = ['EUR', 'USD'];
     currency.forEach((element: any) => {
         if (needCurrencies.indexOf(element.cc) !== -1){
             currObject[element.cc] = element.rate
         }
     })
+    currObject['UAH'] = 1
+
     return (
-        <div>
+        <ul className="currency-now__items">
             {needCurrencies.map((curr) =>
-                <h3 key={curr}>{`${curr}: ${currObject[curr]}`}</h3>
+                curr !== 'UAH'
+                ? <li className="currency-now__item" key={curr}>{`${curr}: ${currObject[curr]}`}</li>
+                : ''
             )}
-        </div>
+        </ul>
     );
 };
 

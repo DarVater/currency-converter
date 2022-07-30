@@ -1,0 +1,36 @@
+
+.convertor {
+    margin-top: 70px;
+    width: 800px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    border-radius: 12px;
+    border: 2px solid cadetblue;
+}
+.convertor__container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.convertor__side {
+    flex: 1 1 50%;
+}
+.side {
+}
+
+.side__amount{
+    border-radius: 12px;
+    border: 2px solid cadetblue;
+    padding-left: 10px;
+    margin: 15px;
+    font-size: 24px;
+    max-width: 200px;
+}
+.side__select-symbol{
+    border-radius: 12px;
+    border: 2px solid cadetblue;
+    margin: 15px;
+    font-size: 24px;
+    max-width: 200px;
+}

@@ -6,9 +6,9 @@ export interface TrackCurrencyState {
 export enum  TrackCurrencyActionTypes{
     SET_TRACK_CURRENCY = 'SET_TRACK_CURRENCY',
 }
-interface  SetTodosPage{
+interface  SetTrackCurrency{
     type: TrackCurrencyActionTypes.SET_TRACK_CURRENCY;
     payload: Object;
 }
 
-export type TrackCurrencyAction =  SetTodosPage
+export type TrackCurrencyAction =  SetTrackCurrency
