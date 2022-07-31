@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import './CurrencyConverter.css'
 
@@ -17,8 +17,19 @@ const CurrencyConverter = () => {
 
     useEffect(() => {
         let uahCount = parseCount(valueSide2, symbolSide2)
-        setValueSide1(unParseCount(uahCount, symbolSide1))
+        debounceUnParseCount(uahCount, symbolSide1)
     }, [valueSide2, symbolSide2])
+    let timer: ReturnType<typeof setTimeout>
+
+    const  debounceUnParseCount = useCallback((value: number, symbol: string) => {
+        if (timer) {
+            clearTimeout(timer)
+        }
+        timer = setTimeout( () => {
+            let outCount = Number(value)/trackCurrency[symbol];
+            setValueSide1(String(outCount.toFixed(2)))
+        }, 500)
+    },[])
 
     const parseCount = (value: string, symbol: string)  => {
         let uahCount = Number(value)
@@ -29,8 +40,10 @@ const CurrencyConverter = () => {
     }
     const unParseCount = (value: number, symbol: string)  => {
         let outCount = Number(value)/trackCurrency[symbol];
+
         return String(outCount.toFixed(2))
     }
+
     const selectSymbol1 = useRef(null);
     const selectSymbol2 = useRef(null);
 
